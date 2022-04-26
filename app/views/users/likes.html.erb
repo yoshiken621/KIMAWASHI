@@ -1,0 +1,5 @@
+<div>いいねした投稿</div>
+<% @like_events.each do |event|%>
+<%= event.user.nickname %>
+<%= image_tag event.image, class:"img-thumbnail col-md-6" %>
+<% end %>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+  <div class="main-container">
+    <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Kimawashi</title>
+      <%= csrf_meta_tags %>
+      <%= csp_meta_tag %> 
+
+      <% stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+      <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %> 
+      <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %> 
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.1.1/css/all.css" integrity="sha384-/frq1SRXYH/bSyou/HUp/hib7RVN1TawQYja658FEOodR/FQBKVqT9Ol+Oz3Olq5" crossorigin="anonymous">
+    </head>
+    <header class="text-white bg-dark">
+      <nav class="navbar navbar-light bg-light p-3">
+        <div class="d-flex col-12 col-md-3 col-lg-2 mb-2 mb-lg-0 flex-wrap flex-md-nowrap justify-content-between">
+            <a class="navbar-brand" href="/">
+              <h2><i class="fa-solid fa-shirt">KIMAWASHI</i><h2>
+            </a>
+        </div>
+        <div class="col-12 col-md-6 col-lg-8 d-flex align-items-center justify-content-md-end mt-3 mt-md-0">
+          <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-expanded="false">
+              <% if user_signed_in? %>
+                <a>ログイン中</a>
+              <% else %>
+                <a>未ログイン</a>
+              <% end %>
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <% if user_signed_in? %>
+              <li><a class="dropdown-item" href="/personal">マイページ</a></li>
+              <li>
+                <%= link_to "お気に入り", likes_user_path(current_user.id), class: "dropdown-item" %>
+              </li>
+              <li><a class="dropdown-item" href="/users/edit">ユーザー情報編集</a></li>
+              <li>
+                <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
+              </li>
+            <% else %>
+              <li><a class="dropdown-item" href="/users/sign_up">新規登録</a></li>
+              <li><a class="dropdown-item" href="/users/sign_in" >ログイン</a></li>
+            <% end %>
+            </ul>
+          </div>
+        </div>
+      </nav> 
+    </header>
+    <body>
+      <div>
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+      
+        <%= yield %>
+      </div>
+    </body>
+  </div>
+</html>

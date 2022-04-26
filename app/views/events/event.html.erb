@@ -1,0 +1,40 @@
+<header>
+  <div class="col-0 col-md-0 col-lg-1 d-flex align-items-center justify-content-md-end mt-100 mt-md-100">
+    <div class="dropdown">
+      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-expanded="true" id= "search-btn" >
+        <a>検索</a>
+      </button>
+      <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton" aria-expanded="true">
+        <%= search_form_for @q, url: search_events_path, id: "form" do |f|%>
+          <div>
+            <%= f.label :user_sex_select_id_eq, '・性別' %>
+            <li><%= f.radio_button :user_sex_select_id_eq, '2'%>男性</li>
+            <li><%= f.radio_button :user_sex_select_id_eq, '3'%>女性</li>
+            <li><%= f.radio_button :user_sex_select_id_eq, '4'%>その他</li>
+          </div>
+          <a>・年齢</a>
+          <li><%= f.radio_button :user_age_select_id_eq, '2'%>10歳未満</li>
+          <li><%= f.radio_button :user_age_select_id_eq, '3'%>10代</li>
+          <li><%= f.radio_button :user_age_select_id_eq, '4'%>20代</li>
+          <li><%= f.radio_button :user_age_select_id_eq, '5'%>30代</li>
+          <li><%= f.radio_button :user_age_select_id_eq, '6'%>40代</li>
+          <li><%= f.radio_button :user_age_select_id_eq, '7'%>50代</li>
+          <li><%= f.radio_button :user_age_select_id_eq, '8'%>60代</li>
+          <li><%= f.radio_button :user_age_select_id_eq, '9'%>70代</li>
+          <li><%= f.radio_button :user_age_select_id_eq, '10'%>80代</li>
+          <li><%= f.radio_button :user_age_select_id_eq, '11'%>90代</li>
+          <li><%= f.radio_button :user_age_select_id_eq, '12'%>100歳以上</li>
+          <br>
+          <%= f.submit '検索' %>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</header>
+<div class="image-index">
+  <% @events.each do |event| %>
+    <div id="event_<%= event.id %>">
+      <%= render 'event', event: event %>
+    </div>
+  <% end %>
+</div>

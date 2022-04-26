@@ -1,0 +1,25 @@
+<% age_params = ['', '', '10歳未満', '10代', '20代', '30代', '40代', '50代', '60代', '70代', '80代', '90代','100歳以上'] %>
+<% sex_params = ['', '', '男性', '女性', 'その他'] %>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+
+<% if event.checkbox == true %>
+  <%= image_tag event.image, class:"img-thumbnail col-md-6" %>
+  <%= event.user.nickname %>
+  <%= age_params[event.user.age_select_id] %>
+  <%= sex_params[event.user.sex_select_id] %>
+  <% if current_user.liked_by?(event.id) %>
+    <div>
+      <%= link_to destroy_like_path(event), method: :DELETE, remote: true do %>
+        <i class="fa fa-heart unlike-btn"></i>
+      <% end %>
+      <%= event.likes.count %>
+    </div>
+  <% else %>
+    <div>
+      <%= link_to create_like_path(event), method: :POST, remote: true do %>
+        <i class="fa fa-heart like-btn"></i>
+      <% end %>
+      <%= event.likes.count %>
+    </div>
+  <% end %>
+<% end %>

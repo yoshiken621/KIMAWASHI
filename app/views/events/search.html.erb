@@ -1,0 +1,8 @@
+<div class="image-index">
+<%= link_to "戻る", index_path %>
+  <% @results.each do |event| %>
+    <div id="event_<%= event.id %>">
+      <%= render 'event', event: event %>
+    </div>
+  <% end %>
+</div>
