@@ -3,23 +3,25 @@
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
 
 <% if event.checkbox == true %>
-  <%= image_tag event.image, class:"img-thumbnail col-md-6" %>
-  <%= event.user.nickname %>
-  <%= age_params[event.user.age_select_id] %>
-  <%= sex_params[event.user.sex_select_id] %>
-  <% if current_user.liked_by?(event.id) %>
-    <div>
-      <%= link_to destroy_like_path(event), method: :DELETE, remote: true do %>
-        <i class="fa fa-heart unlike-btn"></i>
-      <% end %>
-      <%= event.likes.count %>
-    </div>
-  <% else %>
-    <div>
-      <%= link_to create_like_path(event), method: :POST, remote: true do %>
-        <i class="fa fa-heart like-btn"></i>
-      <% end %>
-      <%= event.likes.count %>
-    </div>
-  <% end %>
+  <div class="text-center">
+    <%= image_tag event.image, class:"img-thumbnail col-md-6" %>
+  </div>
+  <div class="text-center">
+    <%= event.user.nickname %>
+    <%= age_params[event.user.age_select_id] %>
+    <%= sex_params[event.user.sex_select_id] %>
+  </div>
+  <div class="text-center mb-5">
+    <% if current_user.liked_by?(event.id) %>
+        <%= link_to destroy_like_path(event), method: :DELETE, remote: true do %>
+          <i class="fa fa-heart unlike-btn"></i>
+        <% end %>
+        いいね<%= event.likes.count %>件
+    <% else %>
+        <%= link_to create_like_path(event), method: :POST, remote: true do %>
+          <i class="fa fa-heart like-btn"></i>
+        <% end %>
+        いいね<%= event.likes.count %>件
+    <% end %>
+  </div>
 <% end %>

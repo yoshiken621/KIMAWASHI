@@ -6,7 +6,7 @@
       </button>
       <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton" aria-expanded="true">
         <%= search_form_for @q, url: search_events_path, id: "form" do |f|%>
-          <div>
+          <div class="mb-3">
             <%= f.label :user_sex_select_id_eq, '・性別' %>
             <li><%= f.radio_button :user_sex_select_id_eq, '2'%>男性</li>
             <li><%= f.radio_button :user_sex_select_id_eq, '3'%>女性</li>
@@ -31,7 +31,7 @@
     </div>
   </div>
 </header>
-<div class="image-index">
+<div>
   <% @events.each do |event| %>
     <div id="event_<%= event.id %>">
       <%= render 'event', event: event %>

@@ -1,5 +1,5 @@
-<div class="main-container">
-  <h2>ユーザー登録</h2>
+<div class="text-center">
+  <div class="mb-4 display-4">ユーザー登録</div>
 
   <%= form_with model: @user, url: user_registration_path, local: true do |f| %>
 
@@ -33,7 +33,7 @@
       <%= f.password_field :password, autocomplete: "new-password" %>
     </div>
 
-    <div class="field">
+    <div class="field mb-4">
       <%= f.label :password_confirmation %>（パスワード確認）<br />
       <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
     </div>

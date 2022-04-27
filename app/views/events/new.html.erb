@@ -1,37 +1,42 @@
-
-<div class="row g-3">
-  <div class="col-sm-10">
-    <h6 class="display-1">服装記録</h6>
-  <div class="col-sm-10">
-  <%= form_with model: @event, local: true do |f| %>
-  <div class="col-md-6">
-    <label class="form-label">日付け</label>
-      <%= f.date_field :date %>
-  </div>
-  <div class="form-floating mb-3">
-    <div class="col-md-6">
-      <label class="form-label">服装をアップロード</label>
-        <%= f.file_field :image, id:"item-image" %>
+<div>
+  <div class="text-center">
+    <div>
+      <h6 class="mb-4 display-3">服装記録</h6>
     </div>
-  </div>
-  <div class="mb-3">
-    <label class="col-sm-2 col-form-label">出来事</label>
-      <%= f.collection_select(:events_select_id, EventsSelect.all, :id, :name, {}, {class:"select-box", id:"events"}) %>
-  </div>
+    <%= form_with model: @event, local: true do |f| %>
+    <div class="mb-4">
+      <h4>
+        <div>日付け</div>
+        <%= f.date_field :date %>
+      </h4>
+    </div>
+    <div class="mb-4">
+      <h4>
+        <div>服装</div>
+        <%= f.file_field :image, id:"item-image" %>
+      </h4>
+    </div>
+    <div class="mb-4">
+      <h4>
+        <div>出来事</div>
+        <%= f.collection_select(:events_select_id, EventsSelect.all, :id, :name, {}, {class:"select-box", id:"events"}) %>
+      </h4>
+    </div>
 
-  <div class="form-floating mb-3">
-    <label for="inputPassword3" class="col-sm-2 col-form-label .text-nowrap">会った人</label>
-      <%= f.text_area :met_person, class:"met-person-text" %>
-  </div>
- <div class="form-floating mb-3">
+    <div class="mb-4">
+      <h4>
+        <div>会った人</div>
+        <%= f.text_area :met_person, class:"met-person-text" %>
+      </h4>
+    </div>
     <div class="form-check">
       <%= f.label :checkbox, "この服装を公開しますか？" %>
       <%= f.check_box :checkbox, id: "check_box" %>
     </div>
+    <div class="record-btn-contents">
+        <%= f.submit "記録" ,class:"btn btn-primary"%>
+    </div>
+    <% end %>
   </div>
-  <div class="record-btn-contents">
-      <%= f.submit "登録する" ,class:"btn btn-primary"%>
-  </div>
-  <% end %>
 </div>
 

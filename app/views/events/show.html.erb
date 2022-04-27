@@ -1,8 +1,18 @@
 <% event_params = ['', '', '仕事・学校', '遊び', 'デート', 'その他'] %>
-<div>
-  <%= image_tag @event.image, class:"img-thumbnail col-md-6" %>
+<div class="text-center">
+  <div>
+    <%= image_tag @event.image, class:"img-thumbnail col-md-6" %>
+  </div>
+  <div>
+    会った人： <%= @event.met_person %>
+  </div>
+  <div>
+    この日の出来事： <%= event_params[@event.events_select_id]%>
+  </div>
+  <div class="mb-4">
+    <%= link_to '編集', "/events/#{@event.id}/edit" %>
+  </div>
+  <div>
+    <%= link_to '削除', "/events/#{@event.id}", method: :delete %>
+  </div>
 </div>
-<%= @event.met_person %>
-<%= event_params[@event.events_select_id]%>
-<%= link_to '編集', "/events/#{@event.id}/edit" %>
-<%= link_to '削除', "/events/#{@event.id}", method: :delete %>
