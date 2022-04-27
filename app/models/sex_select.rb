@@ -5,7 +5,7 @@ class SexSelect < ActiveHash::Base
     { id: 3, name: '女性' },
     { id: 4, name: 'その他' }
   ]
-  
+
   include ActiveHash::Associations
   has_many :users
 end

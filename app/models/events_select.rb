@@ -4,7 +4,7 @@ class EventsSelect < ActiveHash::Base
     { id: 2, name: '仕事・学校' },
     { id: 3, name: '遊び' },
     { id: 4, name: 'デート' },
-    { id: 5, name: 'その他'}
+    { id: 5, name: 'その他' }
   ]
 
   include ActiveHash::Associations

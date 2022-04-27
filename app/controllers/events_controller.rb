@@ -7,22 +7,20 @@ class EventsController < ApplicationController
   end
 
   def personal
-    @events = Event.where(user_id: current_user.id).order("created_at DESC")
+    @events = Event.where(user_id: current_user.id).order('created_at DESC')
   end
 
   def event
-    @events = Event.order("created_at DESC")
-  end 
-  
+    @events = Event.order('created_at DESC')
+  end
+
   def search
-    @results = @q.result.order("created_at DESC")
+    @results = @q.result.order('created_at DESC')
   end
 
   def new
     @event = Event.new
-    if params[:date] != nil then
-      @event.date = params[:date]
-    end
+    @event.date = params[:date] unless params[:date].nil?
   end
 
   def create
@@ -31,13 +29,13 @@ class EventsController < ApplicationController
       redirect_to root_path
     else
       render :new
-    end 
+    end
   end
 
   def show
     @event = Event.find(params[:id])
   end
-  
+
   def edit
     @event = Event.find(params[:id])
   end
@@ -53,14 +51,14 @@ class EventsController < ApplicationController
 
   def destroy
     event = Event.find(params[:id])
-    if event.destroy
-      redirect_to root_path
-    end
+    redirect_to root_path if event.destroy
   end
+
   private
+
   def event_params
     params.require(:event).permit(:date, :image, :events_select_id, :met_person, :id, :checkbox).merge(user_id: current_user.id)
-  end 
+  end
 
   def set_q
     @q = Event.ransack(params[:q])
