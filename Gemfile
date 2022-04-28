@@ -62,3 +62,4 @@ gem 'bootstrap-sass', '~> 3.3.6'
 gem 'devise'
 gem 'font-awesome-sass'
 gem 'ransack'
+gem "aws-sdk-s3", require: false
