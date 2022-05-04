@@ -62,6 +62,11 @@ document.addEventListener('turbolinks:load', function() {
 
       return { domNodes: arrayOfDomNodes }
     },
+    eventDidMount: function(info) {
+      tippy(info.el, {
+         content: info.event.extendedProps.description,
+      });
+    },
   });
 
 
