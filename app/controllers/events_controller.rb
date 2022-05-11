@@ -1,23 +1,30 @@
 class EventsController < ApplicationController
+  # ログイン画面に強制遷移
   before_action :authenticate_user!
+  # 検索画面にデータを持たせる
   before_action :set_q, only: [:event, :search]
 
+  # カレンダーに現在ログインしているユーザーの投句したアイテムを表示
   def index
     @events = Event.all.where(user_id: current_user.id)
   end
 
+  # ユーザーが投稿したアイテムを一覧で表示
   def personal
     @events = Event.where(user_id: current_user.id).order('created_at DESC')
   end
 
+  # ユーザーが投稿した中で公開するアイテムの表示
   def event
     @events = Event.order('created_at DESC')
   end
 
+  # 検索画面に表示させるアイテム
   def search
     @results = @q.result.order('created_at DESC')
   end
 
+  
   def new
     @event = Event.new
     @event.date = params[:date] unless params[:date].nil?
