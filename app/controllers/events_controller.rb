@@ -24,12 +24,13 @@ class EventsController < ApplicationController
     @results = @q.result.order('created_at DESC')
   end
 
-  
+  # 新規投稿画面に表示するフォーム
   def new
     @event = Event.new
     @event.date = params[:date] unless params[:date].nil?
   end
 
+  # 新規登録と完了後の一覧への遷移
   def create
     @event = Event.new(event_params)
     if @event.save
@@ -39,14 +40,17 @@ class EventsController < ApplicationController
     end
   end
 
+  # 詳細ページに表示するアイテム
   def show
     @event = Event.find(params[:id])
   end
 
+  # 編集画面に表示するフォーム
   def edit
     @event = Event.find(params[:id])
   end
 
+  # 編集画面からの更新と完了後の一覧への遷移
   def update
     @event = Event.find(params[:id])
     if @event.update(event_params)
@@ -56,6 +60,7 @@ class EventsController < ApplicationController
     end
   end
 
+  # 投稿済みアイテムの削除
   def destroy
     event = Event.find(params[:id])
     redirect_to root_path if event.destroy
@@ -63,10 +68,12 @@ class EventsController < ApplicationController
 
   private
 
+  # 投稿フォームからデータベースに送られる情報の選別
   def event_params
     params.require(:event).permit(:date, :image, :events_select_id, :met_person, :id, :checkbox).merge(user_id: current_user.id)
   end
 
+  # 検索画面に表示するアイテム
   def set_q
     @q = Event.ransack(params[:q])
   end
