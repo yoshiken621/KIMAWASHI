@@ -37,7 +37,9 @@
             </button>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
             <% if user_signed_in? %>
-              <li><a class="dropdown-item" href="/personal">マイページ</a></li>
+              <li>
+                <%= link_to "投稿一覧", user_path(current_user.id), class: "dropdown-item" %>
+              </li>
               <li>
                 <%= link_to "お気に入り", likes_user_path(current_user.id), class: "dropdown-item" %>
               </li>

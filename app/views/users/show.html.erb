@@ -18,7 +18,7 @@
         <% end %>
       </div>
     <% else %>
-      <% if event.checkbox %>
+      <% if event.checkbox == true %>
         <div class="mb-5">
           <div>服装</div>
           <%= image_tag event.image, class:"img-thumbnail col-md-6" %>

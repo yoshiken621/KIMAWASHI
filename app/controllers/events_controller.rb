@@ -13,11 +13,6 @@ class EventsController < ApplicationController
     @events = Event.includes(:user).where(user_id: current_user.id)
   end
 
-  # ユーザーが投稿したアイテムを一覧で表示
-  def personal
-    @events = Event.where(user_id: current_user.id).order('created_at DESC')
-  end
-
   # ユーザーが投稿した中で公開するアイテムの表示
   def event
     @events = Event.order('created_at DESC')
