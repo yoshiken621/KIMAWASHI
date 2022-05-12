@@ -5,7 +5,7 @@ class Event < ApplicationRecord
   belongs_to :user
   has_many :likes, dependent: :destroy
 
-  validates :events_select_id, numericality: { other_than: 1, message: '出来事を選択してください' }
   validates :date, presence: true
   validates :image, presence: true
+  validates :events_select_id, numericality: { other_than: 1, message: '出来事を選択してください' }
 end
