@@ -10,7 +10,7 @@ class EventsController < ApplicationController
 
   # カレンダーに現在ログインしているユーザーの投句したアイテムを表示
   def index
-    @events = Event.all.where(user_id: current_user.id)
+    @events = Event.includes(:user).where(user_id: current_user.id)
   end
 
   # ユーザーが投稿したアイテムを一覧で表示
