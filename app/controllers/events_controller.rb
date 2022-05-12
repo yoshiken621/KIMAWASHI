@@ -1,8 +1,12 @@
 class EventsController < ApplicationController
   # ログイン画面に強制遷移
   before_action :authenticate_user!
+
   # 検索画面にデータを持たせる
   before_action :set_q, only: [:event, :search]
+
+  # 一つのアイテムをデータベースから取得する処理の一括化
+  before_action :set_event, only: [:show, :edit, :update, :destroy]
 
   # カレンダーに現在ログインしているユーザーの投句したアイテムを表示
   def index
@@ -42,17 +46,14 @@ class EventsController < ApplicationController
 
   # 詳細ページに表示するアイテム
   def show
-    @event = Event.find(params[:id])
   end
 
   # 編集画面に表示するフォーム
   def edit
-    @event = Event.find(params[:id])
   end
 
   # 編集画面からの更新と完了後の一覧への遷移
   def update
-    @event = Event.find(params[:id])
     if @event.update(event_params)
       redirect_to action: :show
     else
@@ -62,8 +63,7 @@ class EventsController < ApplicationController
 
   # 投稿済みアイテムの削除
   def destroy
-    event = Event.find(params[:id])
-    redirect_to root_path if event.destroy
+    redirect_to root_path if @event.destroy
   end
 
   private
@@ -76,5 +76,9 @@ class EventsController < ApplicationController
   # 検索画面に表示するアイテム
   def set_q
     @q = Event.ransack(params[:q])
+  end
+
+  def set_event
+    @event = Event.find(params[:id])
   end
 end
