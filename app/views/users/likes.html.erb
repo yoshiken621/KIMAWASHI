@@ -5,6 +5,6 @@
     <%= image_tag event.image, class:"img-thumbnail col-md-6" %>
   </div>
   <div>
-    <%= event.user.nickname %>
+    <%= link_to event.user.nickname, "/users/#{event.user.id}" %>
   </div>
   <% end %>

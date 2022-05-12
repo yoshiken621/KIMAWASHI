@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   get 'index', to: 'events#event'
   post 'like/:id' => 'likes#create', as: 'create_like'
   delete 'like/:id' => 'likes#destroy', as: 'destroy_like'
-  resources :users do
+  resources :users, only: :show do
     member do
       get :likes
     end
