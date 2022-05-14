@@ -1,7 +1,11 @@
+<%# 各データの表示のための記述 %>
 <% age_params = ['', '', '10歳未満', '10代', '20代', '30代', '40代', '50代', '60代', '70代', '80代', '90代','100歳以上'] %>
 <% sex_params = ['', '', '男性', '女性', 'その他'] %>
+
+<%# いいねボタンの表示のCSSを呼び込む記述 %>
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
 
+<%# チェックボックスデータが存在する場合にのみアイテムを表示する %>
 <% if event.checkbox == true %>
   <div class="text-center">
     <%= image_tag event.image, class:"img-thumbnail col-md-6" %>
@@ -11,6 +15,8 @@
     <%= age_params[event.user.age_select_id] %>
     <%= sex_params[event.user.sex_select_id] %>
   </div>
+
+  <%# いいねボタンに関する処理 %>
   <div class="text-center mb-5">
     <% if current_user.liked_by?(event.id) %>
         <%= link_to destroy_like_path(event), method: :DELETE, remote: true do %>
