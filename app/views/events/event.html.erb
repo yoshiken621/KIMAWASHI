@@ -1,3 +1,4 @@
+<%# 検索機能 %>
 <header>
   <div class="col-0 col-md-0 col-lg-1 d-flex align-items-center justify-content-md-end mt-100 mt-md-100">
     <div class="dropdown">
@@ -31,6 +32,8 @@
     </div>
   </div>
 </header>
+
+<%# 公開されたアイテムの表示 %>
 <div>
   <% @events.each do |event| %>
     <div id="event_<%= event.id %>">
