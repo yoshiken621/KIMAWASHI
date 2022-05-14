@@ -1,3 +1,4 @@
+# データベースの情報をjson形式に変換する処理
 json.array!(@events) do |event|
   json.id event.id
   json.start event.date
