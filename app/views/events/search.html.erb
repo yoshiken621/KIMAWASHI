@@ -1,7 +1,11 @@
 <div class="image-index">
+
+<%# 公開アイテム一覧への戻るボタン %>
 <h4>
   <%= link_to "一覧へ", index_path, class:"btn btn-primary"%>
 </h4>
+
+<%# 公開アイテム一覧表示処理と各アイテムへのID付与 %>
   <% @results.each do |event| %>
     <div id="event_<%= event.id %>">
       <%= render 'event', event: event %>
