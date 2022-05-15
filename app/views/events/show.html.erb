@@ -1,4 +1,7 @@
+<%# 各データの表示のための記述 %>
 <% event_params = ['', '', '仕事・学校', '遊び', 'デート', 'その他'] %>
+
+<%# 投稿アイテムの詳細表示 %>
 <div class="text-center">
   <div>
     <%= image_tag @event.image, class:"img-thumbnail col-md-6" %>
@@ -9,9 +12,13 @@
   <div>
     この日の出来事： <%= event_params[@event.events_select_id]%>
   </div>
+
+<%# アイテムの情報編集画面への遷移 %>
   <div class="mb-4">
     <%= link_to '編集', "/events/#{@event.id}/edit" %>
   </div>
+
+<%# アイテムの情報削除実行リンク %>
   <div>
     <%= link_to '削除', "/events/#{@event.id}", method: :delete %>
   </div>
