@@ -32,8 +32,12 @@
           <div class="dropdown">
           <%# 各画面右上のドロップダウン形式のボタン・ユーザーのログイン状態によりボタン状に表示される文言の変更 %>
             <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-expanded="false">
+
+            <%# ユーザーログイン時 %>
               <% if user_signed_in? %>
                 <a>ログイン中</a>
+            
+            <%# ユーザー未ログイン時 %>
               <% else %>
                 <a>未ログイン</a>
               <% end %>
@@ -41,20 +45,41 @@
 
             <%# ドロップダウン形式のボタンの中身・ユーザーのログイン状態に応じて内容の変更 %>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+
+            <%# ユーザーログイン時 %>
             <% if user_signed_in? %>
+            <%# そのユーザーが投稿したすべてのアイテムを表示するページへのリンク %>
               <li>
                 <%= link_to "投稿一覧", user_path(current_user.id), class: "dropdown-item" %>
               </li>
+            
+            <%# そのユーザーがいいねした投稿を表示するページへのリンク %>
               <li>
                 <%= link_to "お気に入り", likes_user_path(current_user.id), class: "dropdown-item" %>
               </li>
-              <li><a class="dropdown-item" href="/users/edit">ユーザー情報編集</a></li>
+
+            <%# そのユーザーの登録したユーザー情報を編集するページへのリンク %>
+              <li>
+                <a class="dropdown-item" href="/users/edit">ユーザー情報編集</a>
+              </li>
+
+            <%# ユーザーがログアウトするためのボタン %>
               <li>
                 <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
               </li>
+
+            <%# ユーザー未ログイン時 %>
             <% else %>
-              <li><a class="dropdown-item" href="/users/sign_up">新規登録</a></li>
-              <li><a class="dropdown-item" href="/users/sign_in" >ログイン</a></li>
+
+            <%# 新規登録画面へのリンク %>
+              <li>
+                <a class="dropdown-item" href="/users/sign_up">新規登録</a>
+              </li>
+            
+            <%# ログイン画面へのリンク %>
+              <li>
+                <a class="dropdown-item" href="/users/sign_in" >ログイン</a>
+              </li>
             <% end %>
             </ul>
           </div>
@@ -63,6 +88,7 @@
     </header>
     <body>
       <div class="main-container">
+      <%# 書くファイルを呼び出すための記述 %>
         <%= yield %>
       </div>
     </body>
