@@ -1,3 +1,4 @@
+# 服装情報を管理するためのモデル
 class Event < ApplicationRecord
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :events_select
@@ -5,6 +6,7 @@ class Event < ApplicationRecord
   belongs_to :user
   has_many :likes, dependent: :destroy
 
+  # 服装情報を登録する際は日付、写真、その日の出来事がないと登録できないようにする。
   validates :date, presence: true
   validates :image, presence: true
   validates :events_select_id, numericality: { other_than: 1, message: '出来事を選択してください' }
