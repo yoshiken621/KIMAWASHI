@@ -1,3 +1,4 @@
+# ユーザーの年齢情報を管理するためのアクティブハッシュ
 class AgeSelect < ActiveHash::Base
   self.data = [
     { id: 1, name: '--' },
@@ -14,6 +15,7 @@ class AgeSelect < ActiveHash::Base
     { id: 12, name: '100歳以上' }
   ]
 
+# ユーザーモデルと紐付ける
   include ActiveHash::Associations
   has_many :users
 end
