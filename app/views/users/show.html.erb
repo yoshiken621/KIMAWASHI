@@ -1,8 +1,10 @@
+<%# ユーザーが今までに投稿したアイテム一覧 %>
 <% event_params = ['', '', '仕事・学校', '遊び', 'デート', 'その他'] %>
 <div class="text-center">
   <h6 class="display-4">今までの投稿</h6>
   
   <% @events.each do |event| %>
+    <%# ユーザー自身が自分の過去の投稿を確認するとき %>
     <% if current_user.id == event.user.id %>
       <div class="mb-5">
         <div>服装</div>
@@ -10,6 +12,7 @@
         <div>投稿日: <%= event.date%></div>
         <div>この日の出来事: <%= event_params[event.events_select_id]%></div>
         <div>会った人: <%= event.met_person %></div>
+        <%# ユーザーが投稿時にチェックボックスにチェックしているかどうかの条件分岐 %>
         <% if event.checkbox == true %>
           <div>公開中</div>
           <div>いいね: <%= event.likes.count %>Likes</div>
@@ -17,6 +20,7 @@
           <div>非公開</div>
         <% end %>
       </div>
+    <%# ユーザーが他のユーザーの投稿を確認するとき %>
     <% else %>
       <% if event.checkbox == true %>
         <div class="mb-5">
