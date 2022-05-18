@@ -1,3 +1,4 @@
+# ユーザーの性別情報を取得するためのアクティブハッシュ
 class SexSelect < ActiveHash::Base
   self.data = [
     { id: 1, name: '--' },
