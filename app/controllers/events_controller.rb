@@ -8,7 +8,10 @@ class EventsController < ApplicationController
   # 一つのアイテムをデータベースから取得する処理の一括化
   before_action :set_event, only: [:show, :edit, :update, :destroy]
 
-  # カレンダーに現在ログインしているユーザーの投句したアイテムを表示
+  # 一部の機能にアクセス制限を加える
+  before_action :access_controll, only: [:edit, :destroy]
+
+  # カレンダーに現在ログインしているユーザーの投稿したアイテムを表示
   def index
     @events = Event.includes(:user).where(user_id: current_user.id)
   end
@@ -46,7 +49,7 @@ class EventsController < ApplicationController
   # 編集画面に表示するフォーム
   def edit
   end
-
+ 
   # 編集画面からの更新と完了後の一覧への遷移
   def update
     if @event.update(event_params)
@@ -73,7 +76,15 @@ class EventsController < ApplicationController
     @q = Event.ransack(params[:q])
   end
 
+  # データベースの情報を変数に代入する処理
   def set_event
     @event = Event.find(params[:id])
   end
+
+  # ユーザーのアクセス権を制限する処理
+  def access_controll
+    if @event.user_id != current.user_id
+      redirect_to root_path
+    end 
+  end 
 end
