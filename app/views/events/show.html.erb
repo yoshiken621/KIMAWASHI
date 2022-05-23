@@ -13,6 +13,7 @@
     この日の出来事： <%= event_params[@event.events_select_id]%>
   </div>
 
+<% if current_user.id == @event.user_id %>
 <%# アイテムの情報編集画面への遷移 %>
   <div class="mb-4">
     <%= link_to '編集', "/events/#{@event.id}/edit" %>
@@ -22,4 +23,5 @@
   <div>
     <%= link_to '削除', "/events/#{@event.id}", method: :delete %>
   </div>
+<% end %>
 </div>
