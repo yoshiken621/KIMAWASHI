@@ -10,4 +10,13 @@ class Event < ApplicationRecord
   validates :date, presence: true
   validates :image, presence: true
   validates :events_select_id, numericality: { other_than: 1, message: '出来事を選択してください' }
+
+  # 登録されている出会った人からアイテムを絞り込む検索機能
+  def self.research(research)
+    if research != ""
+      Event.where('met_person LIKE(?)', "%#{research}")
+    else
+      redirect_to request.referer
+    end 
+  end 
 end
