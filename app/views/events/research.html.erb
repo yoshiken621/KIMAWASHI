@@ -1,0 +1,14 @@
+<% event_params = ['', '', '仕事・学校', '遊び', 'デート', 'その他'] %>
+<div class="text-center">
+  <h6 class="display-4">検索結果</h6>
+  
+  <% @events.each do |event| %>
+    <div class="mb-5">
+      <div>服装</div>
+      <%= image_tag event.image, class:"img-thumbnail col-md-6" %>
+      <div>投稿日: <%= event.date%></div>
+      <div>この日の出来事: <%= event_params[event.events_select_id]%></div>
+      <div>会った人: <%= event.met_person %></div>
+    </div>
+  <% end %>
+</div>

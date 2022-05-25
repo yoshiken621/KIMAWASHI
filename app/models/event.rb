@@ -15,8 +15,6 @@ class Event < ApplicationRecord
   def self.research(research)
     if research != ""
       Event.where('met_person LIKE(?)', "%#{research}")
-    else
-      redirect_to request.referer
     end 
   end 
 end

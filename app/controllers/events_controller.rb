@@ -64,6 +64,11 @@ class EventsController < ApplicationController
     redirect_to root_path if @event.destroy
   end
 
+  # 出会った人で絞り込みを行う
+  def research
+    @events = Event.research(params[:keyword])
+  end 
+
   private
 
   # 投稿フォームからデータベースに送られる情報の選別
