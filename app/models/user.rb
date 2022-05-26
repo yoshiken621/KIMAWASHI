@@ -13,9 +13,9 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   # ニックネーム、年齢、性別が入力されないと登録できない。また、ニックネームは他のユーザーが既に登録している場合は登録できない。
-  validates :nickname, presence: true, uniqueness: { message: 'このニックネームは既に使われています' }
-  validates :age_select_id, numericality: { other_than: 1, message: '年齢を選択してください' }
-  validates :sex_select_id, numericality: { other_than: 1, message: '性別を選択してください' }
+  validates :nickname, presence: true, uniqueness: { message: 'は既に使われています' }
+  validates :age_select_id, numericality: { other_than: 1, message: 'を選択してください' }
+  validates :sex_select_id, numericality: { other_than: 1, message: 'を選択してください' }
 
 # ユーザがある投稿に既にいいねをしているかを判断する処理
   def liked_by?(event_id)
