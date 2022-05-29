@@ -73,7 +73,6 @@ RSpec.describe User, type: :model do
       it 'passwordとpassword_comfirmationが一致しないと登録できない' do
         @user.password_confirmation = '000000'
         @user.valid?
-        # binding.pry
         expect(@user.errors.full_messages).to include "Password confirmation doesn't match Password"
       end
     end
