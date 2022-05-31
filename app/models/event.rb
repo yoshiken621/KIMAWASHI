@@ -9,7 +9,7 @@ class Event < ApplicationRecord
   # 服装情報を登録する際は日付、写真、その日の出来事がないと登録できないようにする。
   validates :date, presence: true
   validates :image, presence: true
-  validates :events_select_id, numericality: { other_than: 1, message: '出来事を選択してください' }
+  validates :events_select_id, numericality: { other_than: 1, message: 'を選択してください' }
 
   # 登録されている出会った人からアイテムを絞り込む検索機能
   def self.research(research)
