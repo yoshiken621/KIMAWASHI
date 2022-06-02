@@ -4,7 +4,6 @@ FactoryBot.define do
     events_select_id { 2 }
     met_person { 'aaa' }
     checkbox { 1 }
-
     user 
 
 
