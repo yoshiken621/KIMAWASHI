@@ -88,7 +88,7 @@ class EventsController < ApplicationController
 
   # ユーザーのアクセス権を制限する処理
   def access_controll
-    if @event.user_id != current.user_id
+    if @event.user_id != current_user.id
       redirect_to root_path
     end 
   end 
