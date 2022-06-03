@@ -39,3 +39,23 @@ RSpec.describe "服装投稿", type: :system do
     end
   end
 end
+
+RSpec.describe '投稿編集', type: :system do
+  before do
+    @event1 = FactoryBot.create(:event, image: fixture_file_upload("/a.jpg"))
+    @event2 = FactoryBot.create(:event, image: fixture_file_upload("/a.jpg"))
+  end
+  context '投稿編集ができる時' do
+    it 'ログインしたユーザーは自分が投稿した服装の投稿内容を編集できる' do
+      visit new_user_session_path
+      fill_in 'Nickname', with: @event1.user.nickname
+      fill_in 'Password', with: @event1.user.password
+      find('input[value="Log in"]').click
+      expect(current_path).to eq(root_path)
+      visit event_path(@event1)
+      expect(page).to have_link '編集', href: edit_event_path(@event1)
+      visit edit_event_path(@event1)
+      expect(find('#event_date').value).to eq('2014-09-25')
+    end
+  end
+end
