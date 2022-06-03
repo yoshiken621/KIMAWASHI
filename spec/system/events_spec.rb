@@ -7,11 +7,7 @@ RSpec.describe "服装投稿", type: :system do
   end
   context '服装投稿ができる時' do
     it 'ログインしたユーザーは新規登録できる' do
-      visit new_user_session_path
-      fill_in 'Nickname', with: @user.nickname
-      fill_in 'Password', with: @user.password
-      find('input[value="Log in"]').click
-      expect(current_path).to eq(root_path)
+      sign_in(@user)
       visit new_event_path
       fill_in 'event_date', with: @event.date
       attach_file 'item-image', '/Users/apple/KIMAWASHI/spec/fixtures/a.jpg', make_visible: true
@@ -28,11 +24,7 @@ RSpec.describe "服装投稿", type: :system do
       expect(current_path).to eq(new_user_session_path)
     end
     it '誤った投稿内容では投稿できずに投稿ページに戻ってくる' do
-      visit new_user_session_path
-      fill_in 'Nickname', with: @user.nickname
-      fill_in 'Password', with: @user.password
-      find('input[value="Log in"]').click
-      expect(current_path).to eq(root_path)
+      sign_in(@user)
       visit new_event_path
       find('input[value="完了"]').click
       expect(current_path).to eq(events_path)
@@ -47,11 +39,7 @@ RSpec.describe '投稿編集', type: :system do
   end
   context '投稿編集ができる時' do
     it 'ログインしたユーザーは自分が投稿した服装の投稿内容を編集できる' do
-      visit new_user_session_path
-      fill_in 'Nickname', with: @event1.user.nickname
-      fill_in 'Password', with: @event1.user.password
-      find('input[value="Log in"]').click
-      expect(current_path).to eq(root_path)
+      sign_in(@event1.user)
       visit event_path(@event1)
       expect(page).to have_link '編集', href: edit_event_path(@event1)
       visit edit_event_path(@event1)
