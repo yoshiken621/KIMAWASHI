@@ -38,11 +38,7 @@ RSpec.describe 'ログイン', type: :system do
   end
   context 'ユーザーログインができるとき' do
     it '保存されているユーザー情報と合致すればログインができる' do
-      visit new_user_session_path
-      fill_in 'Nickname', with: @user.nickname
-      fill_in 'Password', with: @user.password
-      find('input[value="Log in"]').click
-      expect(current_path).to eq(root_path)
+      sign_in(@user)
     end
   end
   context 'ユーザーログインができないとき' do
