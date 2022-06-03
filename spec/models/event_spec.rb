@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Event, type: :model do
   before do
-    @event = FactoryBot.build(:event,  image: fixture_file_upload("/a.jpg"))
+    @event = FactoryBot.build(:event, image: fixture_file_upload("/a.jpg"))
   end 
 
   describe '新規記録' do
