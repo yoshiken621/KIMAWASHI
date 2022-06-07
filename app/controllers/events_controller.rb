@@ -66,7 +66,7 @@ class EventsController < ApplicationController
 
   # 出会った人で絞り込みを行う
   def research
-    @events = Event.research(params[:keyword])
+    @events = Event.where(user_id: current_user.id).research(params[:keyword])
   end 
 
   private
