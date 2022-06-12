@@ -1,4 +1,4 @@
-<%= form_with model: event, local: true do |f| %>
+<%= form_with model: event, id: "new_post", local: true do |f| %>
   <div class="mb-4">
     <h4>
       <div>日付け</div>
@@ -8,7 +8,8 @@
   <div class="mb-4">
     <h4>
       <div>服装</div>
-      <%= f.file_field :image, id:"item-image" %>
+      <div class="img", id="previews"></div>
+      <%= f.file_field :image%><br>
     </h4>
   </div>
   <div class="mb-4">
